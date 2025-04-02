@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import co.edu.uceva.programaservice.domain.model.Programa;
 import java.util.List;
+import java.util.Optional;
+
 import co.edu.uceva.programaservice.domain.repositories.IProgramaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,8 +32,8 @@ public class ProgramaServiceImpl implements IProgramaService {
 
     @Override
     @Transactional
-    public Programa findById(Long id) {
-        return programaRepository.findById(id).orElse(null);
+    public Optional<Programa> findById(Long id) {
+        return programaRepository.findById(id);
     }
 
     @Override
