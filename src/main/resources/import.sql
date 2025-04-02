@@ -1,0 +1,12 @@
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 1', 1, '01-01-2000', 'diurno', 1, 1, 'presencial', 'Sistemas', 1);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 2', 2, '01-01-2000', 'diurno', 2, 2, 'presencial', 'Sistemas', 2);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 3', 3, '01-01-2000', 'diurno', 3, 3, 'presencial', 'Sistemas', 3);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 4', 4, '01-01-2000', 'diurno', 4, 4, 'presencial', 'Sistemas', 4);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 5', 5, '01-01-2000', 'diurno', 5, 5, 'presencial', 'Sistemas', 5);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 6', 6, '01-01-2000', 'diurno', 6, 6, 'presencial', 'Sistemas', 6);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 7', 7, '01-01-2000', 'diurno', 7, 7, 'presencial', 'Sistemas', 7);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 8', 8, '01-01-2000', 'diurno', 8, 8, 'presencial', 'Sistemas', 8);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 9', 9, '01-01-2000', 'diurno', 9, 9, 'presencial', 'Sistemas', 9);
+insert into programa (activo, cupos_disponibles, descripcion, duracion, fecha_creacion, horario, id_docente, id_semestre, modalidad, nombre, numero_creditos) values (true, 1, 'descripcion 10', 10, '01-01-2000', 'diurno', 10, 10, 'presencial', 'Sistemas', 10);
+
+
