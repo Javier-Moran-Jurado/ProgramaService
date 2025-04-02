@@ -1,5 +1,8 @@
 package co.edu.uceva.programaservice.controllers;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import co.edu.uceva.programaservice.model.entities.Programa;
 import java.util.List;
@@ -19,6 +22,12 @@ public class ProgramaRestController {
     @GetMapping("/programas")
     public List<Programa> getProgramas() {
         return programaService.findAll();
+    }
+
+    @GetMapping("/producto/page/{page}")
+    public Page<Programa> index(@PathVariable Integer page) {
+        Pageable pageable = PageRequest.of(page, 4);
+        return programaService.findAll(pageable);
     }
 
     @PostMapping("/programas")
