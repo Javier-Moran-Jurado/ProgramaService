@@ -1,5 +1,4 @@
-
-service:
+services:
   producto-service:
     image:    javier200521/programaservice:latest
     container_name: programaservice
@@ -17,20 +16,20 @@ service:
     networks:
       - mynetwork
 
-    db:
-      image: postgres:latest
-      container_name: db
-      restart: unless-stopped
-      ports:
-        - "5432:5432"
-      environment:
-        POSTGRES_DB: curso_springboot
-        POSTGRES_USER: userdb
-        POSTGRES_PASSWORD: passdb
-      volumes:
-        - ./data:/var/lib/postgresql/data
-      networks:
-        - mynetwork
+  db:
+    image: postgres:latest
+    container_name: db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=curso_springboot
+      - POSTGRES_USER=userdb
+      - POSTGRES_PASSWORD=passdb
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
 
 networks:
   mynetwork:

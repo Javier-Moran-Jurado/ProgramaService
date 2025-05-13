@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM openjdk:23
 LABEL authors="usuario"
 
 WORKDIR /app
