@@ -1,9 +1,12 @@
 package co.edu.uceva.programaservice.delivery.rest;
 
 import co.edu.uceva.programaservice.domain.exception.*;
+import co.edu.uceva.programaservice.domain.model.UsuarioDTO;
 import co.edu.uceva.programaservice.domain.repositories.IProgramaRepository;
 import co.edu.uceva.programaservice.domain.services.IFacultadClient;
 import co.edu.uceva.programaservice.domain.services.IUsuarioClient;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import co.edu.uceva.programaservice.domain.model.Programa;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +36,7 @@ public class ProgramaRestController {
     private static final String MENSAJE = "mensaje";
     private static final String PROGRAMA = "programa";
     private static final String PROGRAMAS = "programas";
+    private static final String USUARIOS = "usuarios";
 
     // Inyección de dependencia del servicio que proporciona servicios de CRUD
     public ProgramaRestController(IProgramaService programaService, IUsuarioClient usuarioService, IFacultadClient facultadService) {
@@ -54,9 +59,24 @@ public class ProgramaRestController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/usuarios")
-    public ResponseEntity<Map<String, Object>> getUsuarios() {
-        return usuarioService.getUsuarios();
+    @GetMapping("/coordinadores")
+    public ResponseEntity<Map<String, Object>> getDocentes() {
+        ObjectMapper mapper = new ObjectMapper();
+        //https://stackoverflow.com/questions/28821715/java-lang-classcastexception-java-util-linkedhashmap-cannot-be-cast-to-com-test
+        List<UsuarioDTO> usuarios = mapper.convertValue(usuarioService.getUsuarios().getBody().get(USUARIOS), new TypeReference<List<UsuarioDTO>>(){});
+        List<UsuarioDTO> coordinadores = new ArrayList<>();
+        Map<String, Object> response = new HashMap<>();
+
+        for(UsuarioDTO usuario : usuarios) {
+            if(usuario.getRol().equals("Coordinador")) {
+                coordinadores.add(usuario);
+            }
+        }
+        if (coordinadores.isEmpty()) {
+            throw new NoHayCoordinadoresException();
+        }
+        response.put(USUARIOS, coordinadores);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/facultades")
