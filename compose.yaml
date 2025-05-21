@@ -15,7 +15,8 @@ services:
       - JPA_DDL=create-drop
       - DB_HOST=jdbc:postgresql://db:5432/curso_springboot
       - EUREKA_HOST=eureka-server
-      - TARGET_HOST=http://usuario-service:8082
+      - TARGET_HOST_1=http://usuario-service:8082
+      - TARGET_HOST_2=http://facultad-service:8084
     networks:
       - mynetwork
 
@@ -35,6 +36,26 @@ services:
       - JPA_DDL=create-drop
       - DB_HOST=jdbc:postgresql://db:5432/curso_springboot
       - PORT=8082
+      - EUREKA_HOST=eureka-server
+    networks:
+      - mynetwork
+
+  facultad-service:
+    image: angela011/facultad-service:latest
+    container_name: facultad-service
+    restart: unless-stopped
+    depends_on:
+      - db
+      - eureka-server
+    ports:
+      - "8084:8080"
+      - "8085:8081"
+    environment:
+      - DB_USER=userdb
+      - DB_PASS=passdb
+      - JPA_DLL=create-drop
+      - DB_HOST=jdbc:postgresql://db:5432/curso_springboot
+      - PORT=8084
       - EUREKA_HOST=eureka-server
     networks:
       - mynetwork

@@ -1,6 +1,8 @@
 package co.edu.uceva.programaservice.delivery.rest;
 
 import co.edu.uceva.programaservice.domain.exception.*;
+import co.edu.uceva.programaservice.domain.repositories.IProgramaRepository;
+import co.edu.uceva.programaservice.domain.services.IFacultadClient;
 import co.edu.uceva.programaservice.domain.services.IUsuarioClient;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -24,6 +26,7 @@ public class ProgramaRestController {
     // Declaramos como final el servicio para mejorar la inmutabilidad
     private final IProgramaService programaService;
     private final IUsuarioClient usuarioService;
+    private final IFacultadClient facultadService;
 
     // Constantes para los mensajes de respuesta
     private static final String MENSAJE = "mensaje";
@@ -31,9 +34,10 @@ public class ProgramaRestController {
     private static final String PROGRAMAS = "programas";
 
     // Inyección de dependencia del servicio que proporciona servicios de CRUD
-    public ProgramaRestController(IProgramaService programaService, IUsuarioClient usuarioService) {
+    public ProgramaRestController(IProgramaService programaService, IUsuarioClient usuarioService, IFacultadClient facultadService) {
         this.programaService = programaService;
         this.usuarioService = usuarioService;
+        this.facultadService = facultadService;
     }
 
     /**
@@ -55,6 +59,10 @@ public class ProgramaRestController {
         return usuarioService.getUsuarios();
     }
 
+    @GetMapping("/facultades")
+    public ResponseEntity<Map<String, Object>> getFacultades(){
+        return facultadService.getFacultades();
+    }
     /**
      * Listar programas con paginación.
      */

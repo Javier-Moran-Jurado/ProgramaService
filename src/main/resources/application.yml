@@ -1,5 +1,8 @@
 usuarioservice:
-    url: ${TARGET_HOST:http://localhost:8082}
+    url: ${TARGET_HOST_1:http://localhost:8082}
+facultad-service:
+    url: ${TARGET_HOST_2:http://localhost:8084}
+
 app:
     api:
         version: v1
