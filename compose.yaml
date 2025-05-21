@@ -1,10 +1,11 @@
 services:
-  producto-service:
-    image:    javier200521/programaservice:latest
-    container_name: programaservice
+  programa-service:
+    image: javier200521/programaservice:latest
+    container_name: programa-service
     restart: unless-stopped
     depends_on:
       - db
+      - eureka-server
     ports:
       - "8080:8080"
       - "8081:8081"
@@ -13,6 +14,37 @@ services:
       - DB_PASS=passdb
       - JPA_DDL=create-drop
       - DB_HOST=jdbc:postgresql://db:5432/curso_springboot
+      - EUREKA_HOST=eureka-server
+      - TARGET_HOST=http://usuario-service:8082
+    networks:
+      - mynetwork
+
+  usuario-service:
+    image:    andresguevara03/usuarioservice:latest
+    container_name: usuarioservice
+    restart: unless-stopped
+    depends_on:
+      - db
+      - eureka-server
+    ports:
+      - "8082:8082"
+      - "8083:8081"
+    environment:
+      - DB_USER=userdb
+      - DB_PASS=passdb
+      - JPA_DDL=create-drop
+      - DB_HOST=jdbc:postgresql://db:5432/curso_springboot
+      - PORT=8082
+      - EUREKA_HOST=eureka-server
+    networks:
+      - mynetwork
+
+  eureka-server:
+    image:    andresguevara03/eurekaserver:latest
+    container_name: eurekaserver
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
     networks:
       - mynetwork
 

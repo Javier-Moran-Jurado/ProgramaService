@@ -1,6 +1,7 @@
 package co.edu.uceva.programaservice.delivery.rest;
 
 import co.edu.uceva.programaservice.domain.exception.*;
+import co.edu.uceva.programaservice.domain.services.IUsuarioClient;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +23,7 @@ import co.edu.uceva.programaservice.domain.services.IProgramaService;
 public class ProgramaRestController {
     // Declaramos como final el servicio para mejorar la inmutabilidad
     private final IProgramaService programaService;
+    private final IUsuarioClient usuarioService;
 
     // Constantes para los mensajes de respuesta
     private static final String MENSAJE = "mensaje";
@@ -29,8 +31,9 @@ public class ProgramaRestController {
     private static final String PROGRAMAS = "programas";
 
     // Inyección de dependencia del servicio que proporciona servicios de CRUD
-    public ProgramaRestController(IProgramaService programaService) {
+    public ProgramaRestController(IProgramaService programaService, IUsuarioClient usuarioService) {
         this.programaService = programaService;
+        this.usuarioService = usuarioService;
     }
 
     /**
@@ -45,6 +48,11 @@ public class ProgramaRestController {
         Map<String, Object> response = new HashMap<>();
         response.put(PROGRAMAS, programas);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/usuarios")
+    public ResponseEntity<Map<String, Object>> getUsuarios() {
+        return usuarioService.getUsuarios();
     }
 
     /**
