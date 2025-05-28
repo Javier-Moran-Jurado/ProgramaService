@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Map;
 
-@FeignClient(name = "facultad-service")
+@FeignClient(name = "facultad-service", url = "http://api.mewings.joptionpane.software")
 public interface IFacultadClient {
     @GetMapping("api/v1/facultad-service/facultades")
     ResponseEntity<Map<String, Object>> getFacultades();

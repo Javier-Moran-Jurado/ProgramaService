@@ -1,6 +1,6 @@
 services:
   programa-service:
-    image: javier200521/programaservice:latest
+    image: andresguevara03/programaservice:latest
     container_name: programa-service
     restart: unless-stopped
     depends_on:

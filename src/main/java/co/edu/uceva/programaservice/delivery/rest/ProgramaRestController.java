@@ -25,6 +25,7 @@ import java.util.Map;
 import co.edu.uceva.programaservice.domain.services.IProgramaService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/programa-service")
 public class ProgramaRestController {
     // Declaramos como final el servicio para mejorar la inmutabilidad
